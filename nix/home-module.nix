@@ -7,12 +7,11 @@
   cfg = config.programs.noctalia-shell;
   jsonFormat = pkgs.formats.json {};
   generateJson = name: value:
-    if lib.isString value then
-      pkgs.writeText "noctalia-${name}.json" value
-    else if builtins.isPath value || lib.isStorePath value then
-      value
-    else
-      jsonFormat.generate "noctalia-${name}.json" value;
+    if lib.isString value
+    then pkgs.writeText "noctalia-${name}.json" value
+    else if builtins.isPath value || lib.isStorePath value
+    then value
+    else jsonFormat.generate "noctalia-${name}.json" value;
 in {
   options.programs.noctalia-shell = {
     enable = lib.mkEnableOption "Noctalia shell configuration";
@@ -105,8 +104,8 @@ in {
         Unit = {
           Description = "Noctalia Shell - Wayland desktop shell";
           Documentation = "https://docs.noctalia.dev/docs";
-          PartOf = [ config.wayland.systemd.target ];
-          After = [ config.wayland.systemd.target ];
+          PartOf = [config.wayland.systemd.target];
+          After = [config.wayland.systemd.target];
           X-Restart-Triggers =
             lib.optional (cfg.settings != {}) config.xdg.configFile."noctalia/settings.json".source
             ++ lib.optional (cfg.colors != {}) config.xdg.configFile."noctalia/colors.json".source;
@@ -120,7 +119,7 @@ in {
           ];
         };
 
-        Install.WantedBy = [ config.wayland.systemd.target ];
+        Install.WantedBy = [config.wayland.systemd.target];
       };
 
       home.packages =

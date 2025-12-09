@@ -24,6 +24,7 @@ Item {
     }
   }
 
+  
   IpcHandler {
     target: "screenRecorder"
     function toggle() {
@@ -389,6 +390,19 @@ Item {
       }
     }
   }
+
+  // Ipc handler for bluetooth operations
+  IpcHandler {
+    target: "bluetooth"
+      function toggle() {
+          root.withTargetScreen(screen => {
+              var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
+              if (!bluetoothPanel?.isPanelOpen || (bluetoothPanel?.isPanelOpen && !bluetoothPanel?.activePlugin))
+                  bluetoothPanel?.toggle();
+          });
+      }
+    }
+
 
   // -------------------------------------------------------------------
   // Queue an IPC panel operation - will execute when screen is detected
