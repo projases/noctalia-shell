@@ -394,21 +394,27 @@ Item {
   // Ipc handler for bluetooth operations
   IpcHandler {
     target: "bluetooth"
+
+    function test() {
+      Logger.log("Bluetooth", "Test IPC call received");
+      console.log("Bluetooth", "Test IPC call received");
+    }
+
     function toggle() {
       try {
-          Logger.d("Bluetooth", "Handler executing");
+          Logger.log("Bluetooth", "Handler executing");
+          console.log("Bluetooth", "Handler executing");
           root.withTargetScreen(screen => {
-              Logger.d("Bluetooth", "Screen: " + screen.name);
-              var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
-              Logger.d("Bluetooth", "Panel null? " + (!bluetoothPanel));
-              bluetoothPanel?.toggle();
+                                  Logger.log("Bluetooth", "Screen: " + screen.name);
+                                  var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
+                                  Logger.log("Bluetooth", "Panel null? " + (!bluetoothPanel));
+                                  bluetoothPanel?.toggle(null, "Bluetooth");
           });
       } catch(e) {
           Logger.e("Bluetooth", "Error: " + e);
       }
     }
   }
-
 
 
 
