@@ -24,6 +24,30 @@ Item {
     }
   }
 
+    // Ipc handler for bluetooth operations
+  IpcHandler {
+    target: "bluez"
+
+    function test() {
+      Logger.log("Bluetooth", "Test IPC call received");
+      console.log("Bluetooth", "Test IPC call received");
+    }
+
+    /* function toggle() { */
+    /*   try { */
+    /*       Logger.log("Bluetooth", "Handler executing"); */
+    /*       console.log("Bluetooth", "Handler executing"); */
+    /*       root.withTargetScreen(screen => { */
+    /*                               Logger.log("Bluetooth", "Screen: " + screen.name); */
+    /*                               var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen); */
+    /*                               Logger.log("Bluetooth", "Panel null? " + (!bluetoothPanel)); */
+    /*                               bluetoothPanel?.toggle(null, "Bluetooth"); */
+    /*       }); */
+    /*   } catch(e) { */
+    /*       Logger.e("Bluetooth", "Error: " + e); */
+    /*   } */
+    /* } */
+  }
   
   IpcHandler {
     target: "screenRecorder"
@@ -391,30 +415,7 @@ Item {
     }
   }
 
-  // Ipc handler for bluetooth operations
-  IpcHandler {
-    target: "bluetooth"
-
-    function test() {
-      Logger.log("Bluetooth", "Test IPC call received");
-      console.log("Bluetooth", "Test IPC call received");
-    }
-
-    function toggle() {
-      try {
-          Logger.log("Bluetooth", "Handler executing");
-          console.log("Bluetooth", "Handler executing");
-          root.withTargetScreen(screen => {
-                                  Logger.log("Bluetooth", "Screen: " + screen.name);
-                                  var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
-                                  Logger.log("Bluetooth", "Panel null? " + (!bluetoothPanel));
-                                  bluetoothPanel?.toggle(null, "Bluetooth");
-          });
-      } catch(e) {
-          Logger.e("Bluetooth", "Error: " + e);
-      }
-    }
-  }
+  
 
 
 
