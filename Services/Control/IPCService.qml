@@ -26,7 +26,7 @@ Item {
 
     // Ipc handler for bluetooth operations
   IpcHandler {
-    target: "bluez"
+    target: "bluetooth"
     Component.onCompleted: {
         console.log("=== BLUEZ IPC HANDLER REGISTERED ===");
     }
