@@ -27,7 +27,9 @@ Item {
     // Ipc handler for bluetooth operations
   IpcHandler {
     target: "bluez"
-
+    Component.onCompleted: {
+        console.log("=== BLUEZ IPC HANDLER REGISTERED ===");
+    }
     function test() {
       Logger.log("Bluetooth", "Test IPC call received");
       console.log("Bluetooth", "Test IPC call received");
