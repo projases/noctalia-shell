@@ -395,12 +395,20 @@ Item {
   IpcHandler {
     target: "bluetooth"
     function toggle() {
-      root.withTargetScreen(screen => {
-                              var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
-                              bluetoothPanel?.toggle();
-                            });
+      try {
+          Logger.d("Bluetooth", "Handler executing");
+          root.withTargetScreen(screen => {
+              Logger.d("Bluetooth", "Screen: " + screen.name);
+              var bluetoothPanel = PanelService.getPanel("bluetoothPanel", screen);
+              Logger.d("Bluetooth", "Panel null? " + (!bluetoothPanel));
+              bluetoothPanel?.toggle();
+          });
+      } catch(e) {
+          Logger.e("Bluetooth", "Error: " + e);
+      }
     }
   }
+
 
 
 
